@@ -25,9 +25,9 @@ namespace xadrez
             Peca p = tab.RetirarPecas(origem);
             if (p != null)
             {
-                p.IncrementarQteMoviemntos();
-                Peca pecaCapturada = tab.RetirarPecas(destino);
-                tab.ColocarPecas(p, destino);
+                    p.IncrementarQteMoviemntos();
+                    Peca pecaCapturada = tab.RetirarPecas(destino);
+                    tab.ColocarPecas(p, destino);         
             }
             else
             {
@@ -39,13 +39,13 @@ namespace xadrez
 
         private void colocarPecas()
         {
-            tab.ColocarPecas(new Torre(tab, Cor.Branca), new PosicaoXadrez('c',1).toPosicao());
+            tab.ColocarPecas(new Torre(tab, Cor.Branca), new PosicaoXadrez('c',8).toPosicao());
             tab.ColocarPecas(new Torre(tab, Cor.Branca), new PosicaoXadrez('c', 3).toPosicao());
             tab.ColocarPecas(new Torre(tab, Cor.Branca), new PosicaoXadrez('c', 2).toPosicao());
             tab.ColocarPecas(new Torre(tab, Cor.Preta), new PosicaoXadrez('c', 7).toPosicao());
             tab.ColocarPecas(new Torre(tab, Cor.Preta), new PosicaoXadrez('c', 6).toPosicao());
             tab.ColocarPecas(new Torre(tab, Cor.Preta), new PosicaoXadrez('c', 4).toPosicao());
-            tab.ColocarPecas(new Torre(tab, Cor.Branca), new PosicaoXadrez('a', 1).toPosicao()); ;
+            tab.ColocarPecas(new Rei(tab, Cor.Branca), new PosicaoXadrez('a', 1).toPosicao()); ;
         }
     }
 }

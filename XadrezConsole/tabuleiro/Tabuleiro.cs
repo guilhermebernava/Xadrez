@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace tabuleiro
 {
     internal class Tabuleiro
@@ -16,6 +17,10 @@ namespace tabuleiro
         }
         public Peca peca(Posicao pos)
         {
+            if (pos == null)
+            {
+                throw new TabuleiroException("nao existe peca");
+            }
             return pecas[pos.linha, pos.coluna];
         }
         public Peca peca(int linha, int coluna)
@@ -44,7 +49,7 @@ namespace tabuleiro
             if(peca(pos) == null)
             {
                 return null;
-                throw new TabuleiroException("Sem nenhuma peca");
+                throw new TabuleiroException("Sem peca nesse lugar");
             }
             Peca aux = peca(pos);
             aux.Posicao = null;
@@ -66,6 +71,7 @@ namespace tabuleiro
             {
                 throw new TabuleiroException("Posicao Invalida");
             }
+           
         }
     }
 }
