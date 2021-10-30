@@ -11,16 +11,19 @@ namespace XadrezConsole
         {
             for (int i = 0; i < tab.linhas; i++)
             {
-                Console.Write(8-i + " ");
+                Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     ImprimirPeca(tab.peca(i, j));
+
                 }
                 Console.WriteLine();
+
             }
             Console.WriteLine(" A B C D E F G H");
+
         }
-        public static void ImprimirTabuleiro(Tabuleiro tab, bool [,] posPossiveis)
+        public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] posPossiveis)
         {
             ConsoleColor FundoOriginal = Console.BackgroundColor;
             ConsoleColor FundoAlterado = ConsoleColor.DarkGray;
@@ -29,22 +32,18 @@ namespace XadrezConsole
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.colunas; j++)
                 {
-                    if (posPossiveis[i, j])
+                    if (posPossiveis[i, j] == true)
                     {
-                        Console.BackgroundColor = FundoAlterado;
+                        Console.BackgroundColor = ConsoleColor.Red;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = FundoOriginal;
-                    }
-                    ImprimirPeca(tab.peca(i, j));
-                    Console.ForegroundColor = FundoOriginal;
+                   
+                        ImprimirPeca(tab.peca(i, j));
+                        Console.BackgroundColor=FundoOriginal;
+                     
                 }
-                Console.WriteLine();
-                
+                Console.WriteLine();  
             }
             Console.WriteLine("  A B C D E F G H");
-            Console.ForegroundColor = FundoOriginal;
         }
 
         public static void ImprimirPeca(Peca peca)

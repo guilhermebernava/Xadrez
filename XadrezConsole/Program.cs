@@ -26,16 +26,8 @@ namespace XadrezConsole
                         Tela.ImprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
                         Console.Write("Destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                        partidaDeXadrez.executarMoviemtno(origem, destino);
                     }
-
-                    
-
-                    
                 }
-                
-                
-
             }
             catch (TabuleiroException ex)
             {

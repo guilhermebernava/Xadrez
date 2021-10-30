@@ -15,7 +15,6 @@ namespace xadrez
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.linhas, Tab.colunas];
-            bool[,] falso = { { false }, { false } };
             Posicao pos = new Posicao(0, 0);
 
             //acima
@@ -23,9 +22,65 @@ namespace xadrez
             if(Tab.posicaoValida(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                return mat;
+
             }
-            return falso;
+            //abaixo
+            pos.definirValores(Posicao.linha + 1, Posicao.coluna);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            //esquerda
+            pos.definirValores(Posicao.linha , Posicao.coluna -1);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            //diretia
+            pos.definirValores(Posicao.linha, Posicao.coluna +1 );
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+           
+            //diagonal direita cima
+            pos.definirValores(Posicao.linha - 1, Posicao.coluna +1);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            //diagonal esquerda  cima
+            pos.definirValores(Posicao.linha - 1, Posicao.coluna - 1);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            //diagonal direita baixo
+            pos.definirValores(Posicao.linha + 1, Posicao.coluna + 1);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            //diagonal esquerda  baixo
+            pos.definirValores(Posicao.linha + 1, Posicao.coluna - 1);
+            if (Tab.posicaoValida(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+
+            }
+
+            return mat;
         }
         
         public override string ToString()
