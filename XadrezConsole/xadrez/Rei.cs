@@ -16,6 +16,7 @@ namespace xadrez
         {
             bool[,] mat = new bool[Tab.linhas, Tab.colunas];
             Posicao pos = new Posicao(0, 0);
+            bool ok = false;
 
             //acima
             pos.definirValores(Posicao.linha -1 ,Posicao.coluna);

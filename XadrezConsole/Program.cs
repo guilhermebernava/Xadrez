@@ -24,8 +24,24 @@ namespace XadrezConsole
                         bool[,] posicoesPossiveis = partidaDeXadrez.tab.peca(origem).movimentosPossiveis();
                         Console.Clear();
                         Tela.ImprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
-                        Console.Write("Destino: ");
-                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        while (true)
+                        {
+                            Console.WriteLine();
+                            Console.Write("Destino: ");
+                            Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                            var ok = partidaDeXadrez.ExecutarMovimentacao(origem, destino);
+                            if (ok)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.Write("Origem: ");
+                                origem = Tela.lerPosicaoXadrez().toPosicao();
+                            }
+                        }
+                        
                     }
                 }
             }
