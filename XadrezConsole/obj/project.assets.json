@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\guilh\\.nuget\\packages\\": {}
+    "C:\\Users\\berna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\guilh\\Documents\\Visual Studio 2022\\Projects\\Xadrez\\Xadrez\\XadrezConsole\\XadrezConsole.csproj",
+      "projectUniqueName": "C:\\Users\\berna\\Documents\\Estudos\\Xadrez\\Xadrez\\XadrezConsole\\XadrezConsole.csproj",
       "projectName": "XadrezConsole",
-      "projectPath": "C:\\Users\\guilh\\Documents\\Visual Studio 2022\\Projects\\Xadrez\\Xadrez\\XadrezConsole\\XadrezConsole.csproj",
-      "packagesPath": "C:\\Users\\guilh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\guilh\\Documents\\Visual Studio 2022\\Projects\\Xadrez\\Xadrez\\XadrezConsole\\obj\\",
+      "projectPath": "C:\\Users\\berna\\Documents\\Estudos\\Xadrez\\Xadrez\\XadrezConsole\\XadrezConsole.csproj",
+      "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\berna\\Documents\\Estudos\\Xadrez\\Xadrez\\XadrezConsole\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\guilh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
