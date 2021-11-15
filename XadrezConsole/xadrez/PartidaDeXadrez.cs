@@ -7,8 +7,8 @@ namespace xadrez
     internal class PartidaDeXadrez
     {
         public Tabuleiro tab { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
         public bool[,] posicoesPossiveis { get; set; }
 
@@ -32,8 +32,9 @@ namespace xadrez
             tab.ColocarPecas(new Rei(tab, Cor.Branca), new PosicaoXadrez('g', 2).toPosicao());
         }
 
-        public bool ExecutarMovimentacao(Posicao origem, Posicao destino)
+        public bool RealizaJogada(Posicao origem, Posicao destino)
         {
+            bool b1;
             Posicao pos = destino;
             Peca p = tab.peca(origem);
             p.Posicao = origem;
@@ -42,25 +43,49 @@ namespace xadrez
             {
                 if (posicoesPossiveis[pos.linha, pos.coluna] == true)
                 {
-                    p.IncrementarQteMoviemntos();
-                    p = tab.RetirarPecas(origem);
-                    Peca pecaCapturada = tab.RetirarPecas(destino);
-                    tab.ColocarPecas(p, destino);
-                    return true;
+                    b1 = true;
+                    ExecutarMovimentacao(origem, destino);
                 }
                 else
                 {
-                    Console.WriteLine("Posicao Invalida");
-                    return false;   
+                    b1 = false;
+                    Console.WriteLine("Posicao Invalida!");
                 }
 
+            }
+            turno++;
+            MudaJogador();
+            b1 = true;
+            return b1;
+        }
+
+        public void MudaJogador()
+        {
+            if (jogadorAtual == Cor.Branca)
+            {
+                jogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                jogadorAtual = Cor.Branca;
+            }   
+        }
+
+        public void ExecutarMovimentacao(Posicao origem, Posicao destino)
+        {
+            Peca p = tab.peca(origem);
+            if (p != null)
+            {
+                p.IncrementarQteMoviemntos();
+                p = tab.RetirarPecas(origem);
+                Peca pecaCapturada = tab.RetirarPecas(destino);
+                tab.ColocarPecas(p, destino);
             }
             else
             {
                 Console.WriteLine("Sem Peca selecionada");
-                return false;
+
             }
-            
         }
-    } 
+    }
 }
