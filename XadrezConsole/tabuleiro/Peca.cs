@@ -19,6 +19,21 @@ namespace tabuleiro
             qteMovimentos = 0;
         }
 
+        public bool ExisteMovimentoPossiveis()
+        {
+            bool[,] mat = movimentosPossiveis();
+            for (int i = 0;i <Tab.linhas;i++)
+            {
+                for(int j = 0; j < Tab.colunas; j++)
+                {
+                    if (mat[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public void IncrementarQteMoviemntos() { qteMovimentos++; }
 
         public abstract bool[,] movimentosPossiveis();

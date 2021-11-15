@@ -32,32 +32,50 @@ namespace xadrez
             tab.ColocarPecas(new Rei(tab, Cor.Branca), new PosicaoXadrez('g', 2).toPosicao());
         }
 
-        public bool RealizaJogada(Posicao origem, Posicao destino)
+        public void RealizaJogada(Posicao origem, Posicao destino)
         {
-            bool b1;
-            Posicao pos = destino;
             Peca p = tab.peca(origem);
             p.Posicao = origem;
-            posicoesPossiveis = p.movimentosPossiveis();
-            if (p != null)
-            {
-                if (posicoesPossiveis[pos.linha, pos.coluna] == true)
-                {
-                    b1 = true;
-                    ExecutarMovimentacao(origem, destino);
-                }
-                else
-                {
-                    b1 = false;
-                    Console.WriteLine("Posicao Invalida!");
-                }
-
-            }
+            ExecutarMovimentacao(origem, destino);
             turno++;
             MudaJogador();
-            b1 = true;
-            return b1;
+
         }
+
+        public void ValidarPosicaoDeOrigem(Posicao pos)
+        {
+            if (tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("Sem Peça!");
+            }
+
+            if (jogadorAtual != tab.peca(pos).Cor)
+            {
+                throw new TabuleiroException("Jogador Errado!");
+            }
+
+            if (!tab.peca(pos).ExisteMovimentoPossiveis())
+            {
+                throw new TabuleiroException("Sem Posições possíveis!");
+            }
+        }
+
+        public void ValidarPosicaoDestino(Posicao origem, Posicao pos)
+        {
+            for (int i = 0; i < tab.linhas; i++)
+            {
+                for (int j = 0; j < tab.colunas; j++)
+                {
+                    bool[,] possible = tab.peca(origem).movimentosPossiveis();
+                    if (!possible[pos.linha, pos.coluna])
+                    {
+                        throw new TabuleiroException("Posição Inválida!");
+                    }
+                }
+            }
+
+        }
+
 
         public void MudaJogador()
         {
@@ -68,24 +86,16 @@ namespace xadrez
             else
             {
                 jogadorAtual = Cor.Branca;
-            }   
+            }
         }
 
         public void ExecutarMovimentacao(Posicao origem, Posicao destino)
         {
             Peca p = tab.peca(origem);
-            if (p != null)
-            {
-                p.IncrementarQteMoviemntos();
-                p = tab.RetirarPecas(origem);
-                Peca pecaCapturada = tab.RetirarPecas(destino);
-                tab.ColocarPecas(p, destino);
-            }
-            else
-            {
-                Console.WriteLine("Sem Peca selecionada");
-
-            }
+            p.IncrementarQteMoviemntos();
+            p = tab.RetirarPecas(origem);
+            Peca pecaCapturada = tab.RetirarPecas(destino);
+            tab.ColocarPecas(p, destino);
         }
     }
 }

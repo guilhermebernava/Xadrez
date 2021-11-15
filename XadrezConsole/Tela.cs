@@ -71,9 +71,24 @@ namespace XadrezConsole
 
         public static PosicaoXadrez lerPosicaoXadrez()
         {
-            string s = Console.ReadLine();
+            string s = Console.ReadLine().ToLower();
             char coluna = s[0];
+            int t = s.Length;
+            int number;
+            bool teste = int.TryParse(s[1] +"", out number);
+            if(t > 2)
+            {
+                throw new TabuleiroException("Syntax Incorreta!");
+            }
+            if (!teste)
+            {
+                throw new TabuleiroException("Syntax Incorreta!");
+            }
             int linha = int.Parse(s[1] + "");
+            if(linha > 8)
+            {
+                throw new TabuleiroException("Syntax Incorreta!");
+            }
             return new PosicaoXadrez(coluna, linha);
         }
     }

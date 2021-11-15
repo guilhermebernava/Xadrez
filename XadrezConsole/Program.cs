@@ -8,7 +8,7 @@ namespace XadrezConsole
 {
     internal class Program
     {
-        static  void Main(string[] args)
+        static void Main(string[] args)
         {
             try
             {
@@ -16,41 +16,32 @@ namespace XadrezConsole
 
                 while (!partidaDeXadrez.terminada)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partidaDeXadrez.tab);
-                    Console.WriteLine();
-                    Console.WriteLine("Turno: "+ partidaDeXadrez.turno);
-                    Console.WriteLine("Aguardando Jogada: " + partidaDeXadrez.jogadorAtual);
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    if (partidaDeXadrez.jogadorAtual == partidaDeXadrez.tab.peca(origem).Cor)
+                    try
                     {
-                        Console.WriteLine("Cor Invalida");
-                        if (partidaDeXadrez.tab.existePeca(origem))
-                        {
-                            bool[,] posicoesPossiveis = partidaDeXadrez.tab.peca(origem).movimentosPossiveis();
-                            Console.Clear();
-                            Tela.ImprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
-                            while (true)
-                            {
-                                Console.WriteLine();
-                                Console.Write("Destino: ");
-                                Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                                var ok = partidaDeXadrez.RealizaJogada(origem, destino);
-                                if (ok)
-                                {
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine();
-                                    Console.Write("Origem: ");
-                                    origem = Tela.lerPosicaoXadrez().toPosicao();
-                                }
-                            }
-
-                        }
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partidaDeXadrez.tab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + partidaDeXadrez.turno);
+                        Console.WriteLine("Aguardando Jogada: " + partidaDeXadrez.jogadorAtual);
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partidaDeXadrez.ValidarPosicaoDeOrigem(origem);
+                        bool[,] posicoesPossiveis = partidaDeXadrez.tab.peca(origem).movimentosPossiveis();
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partidaDeXadrez.ValidarPosicaoDestino(origem,destino);
+                        partidaDeXadrez.RealizaJogada(origem,destino);
                     }
+                    catch (TabuleiroException e)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+
                 }
             }
             catch (TabuleiroException ex)
