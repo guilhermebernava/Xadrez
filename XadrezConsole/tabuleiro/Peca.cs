@@ -36,6 +36,8 @@ namespace tabuleiro
         }
         public void IncrementarQteMoviemntos() { qteMovimentos++; }
 
+        public void DecrementarQteMoviemntos() { qteMovimentos--; }
+
         public abstract bool[,] movimentosPossiveis();
     }
 }
