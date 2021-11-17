@@ -16,10 +16,19 @@ namespace XadrezConsole
             ImprimirPecasCapturadas(partida);
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando Jogada: "+ partida.jogadorAtual);
-            if (partida.Xeque)
+            if (!partida.terminada)
             {
-                Console.WriteLine("VOCE ESTA EM XEQUE !!!");
+                Console.WriteLine("Aguardando Jogada: " + partida.jogadorAtual);
+                if (partida.Xeque)
+                {
+                    Console.WriteLine("VOCE ESTA EM XEQUE !!!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!!");
+                Console.WriteLine("VOCE PERDEU");
+                Console.WriteLine("VENCEDOR: " + partida.jogadorAtual);
             }
         }
 
@@ -33,8 +42,8 @@ namespace XadrezConsole
             ConsoleColor aux = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             ImprimirConunto(partida.PecasCapturadas(Cor.Preta));
-            Console.ForegroundColor= aux;
-            Console.WriteLine( );
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
         }
 
         public static void ImprimirConunto(HashSet<Peca> conunto)
@@ -42,7 +51,7 @@ namespace XadrezConsole
             Console.Write("[");
             foreach (Peca x in conunto)
             {
-                Console.Write(x+ " ");
+                Console.Write(x + " ");
             }
             Console.Write("]");
         }
@@ -75,12 +84,12 @@ namespace XadrezConsole
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                     }
-                   
-                        ImprimirPeca(tab.peca(i, j));
-                        Console.BackgroundColor=FundoOriginal;
-                     
+
+                    ImprimirPeca(tab.peca(i, j));
+                    Console.BackgroundColor = FundoOriginal;
+
                 }
-                Console.WriteLine();  
+                Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
         }
@@ -114,8 +123,8 @@ namespace XadrezConsole
             char coluna = s[0];
             int t = s.Length;
             int number;
-            bool teste = int.TryParse(s[1] +"", out number);
-            if(t > 2)
+            bool teste = int.TryParse(s[1] + "", out number);
+            if (t > 2)
             {
                 throw new TabuleiroException("Syntax Incorreta!");
             }
@@ -124,7 +133,7 @@ namespace XadrezConsole
                 throw new TabuleiroException("Syntax Incorreta!");
             }
             int linha = int.Parse(s[1] + "");
-            if(linha > 8)
+            if (linha > 8)
             {
                 throw new TabuleiroException("Syntax Incorreta!");
             }
