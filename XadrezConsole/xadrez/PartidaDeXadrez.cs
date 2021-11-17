@@ -89,15 +89,19 @@ namespace xadrez
                 bool[,] mat = x.movimentosPossiveis();
                 for (int i = 0; i < tab.linhas; i++)
                 {
-                    for(int j = 0; j < tab.colunas; j++)
+                    for (int j = 0; j < tab.colunas; j++)
                     {
-                        Posicao destino = new Posicao(i,j);
-                        Peca PecaCapturada = ExecutarMovimentacao(x.Posicao, destino);
-                        bool TesteXequeMate = EstaEmXeque(cor);
-                        DesFazMovimento(x.Posicao, destino,PecaCapturada);
-                        if (!TesteXequeMate)
+                        if (mat[i, j])
                         {
-                            return false;
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca PecaCapturada = ExecutarMovimentacao(origem, destino);
+                            bool TesteXequeMate = EstaEmXeque(cor);
+                            DesFazMovimento(origem, destino, PecaCapturada);
+                            if (!TesteXequeMate)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -133,10 +137,11 @@ namespace xadrez
         {
             ColocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
             ColocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
+            ColocarNovaPeca('h', 6, new Torre(tab, Cor.Branca));
             ColocarNovaPeca('h', 7, new Torre(tab, Cor.Branca));
+            ColocarNovaPeca('h', 8, new Torre(tab, Cor.Branca));
 
             ColocarNovaPeca('a', 8, new Rei(tab, Cor.Preta));
-            ColocarNovaPeca('b', 8, new Torre(tab, Cor.Preta));
             //ColocarNovaPeca('c',1, new Torre(tab, Cor.Branca));
             //ColocarNovaPeca('c', 2, new Torre(tab, Cor.Branca));
             //ColocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
